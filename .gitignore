@@ -1,9 +1,9 @@
-fyp_TopDown*/[Ll]ibrary/
-fyp_TopDown*/[Tt]emp/
-fyp_TopDown*/[Oo]bj/
-fyp_TopDown*/[Ll]ogs/
-fyp_TopDown*/[Bb]uilds/
-fyp_TopDown*/Assets/AssetStoreTools*
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Bb]uilds/
+Assets/AssetStoreTools*
 
 
 # Visual Studio cache directory
