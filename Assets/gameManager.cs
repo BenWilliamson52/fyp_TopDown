@@ -6,6 +6,7 @@ public class gameManager : MonoBehaviour
 {
 
     public GameObject enemy1;
+    public GameObject enemy2;
 
     public Transform spawn1;
     public Transform spawn2;
@@ -38,7 +39,7 @@ public class gameManager : MonoBehaviour
             }
             if (randomSpawnPos == 1)
             {
-               Instantiate(enemy1, spawn2.position, spawn2.rotation);
+               Instantiate(enemy2, spawn2.position, spawn2.rotation);
             }
             enemiesSpawned++;
         }
