@@ -56,6 +56,7 @@ public class enemyShoot : MonoBehaviour
         {
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
+
         }
     }
 }
