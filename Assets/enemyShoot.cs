@@ -29,22 +29,22 @@ public class enemyShoot : MonoBehaviour
 
     public void EnemyMoveShoot()
     {
-        if (transform.position.x > (player.transform.position.x) * 3 )
+        if (transform.position.x > (player.transform.position.x) + 5 )
         {
             transform.position -= new Vector3(speed, 0) * Time.deltaTime;
         }
 
-        if (transform.position.x < (player.transform.position.x) * 3 )
+        if (transform.position.x < (player.transform.position.x) + 5 )
         {
             transform.position += new Vector3(speed, 0) * Time.deltaTime;
         }
 
-        if (transform.position.y < (player.transform.position.y) * 3)
+        if (transform.position.y < (player.transform.position.y) + 5)
         {
             transform.position += new Vector3(0, speed) * Time.deltaTime;
         }
 
-        if (transform.position.y > (player.transform.position.y) * 3 )
+        if (transform.position.y > (player.transform.position.y) + 5)
         {
             transform.position -= new Vector3(0, speed) * Time.deltaTime;
         }
