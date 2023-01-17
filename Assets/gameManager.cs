@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class gameManager : MonoBehaviour
 {
+    public int wavenum = 0;
+    public int TimeWaves;
+    public bool spawnOn = false;
+    public bool waveChange = false;
+
 
     public GameObject enemy1;
     public GameObject enemy2;
@@ -16,22 +21,40 @@ public class gameManager : MonoBehaviour
     public int enemiesSpawned;
     public int maxEnemiesToSpawn;
     public float randomSpawnPos;
-    public float wave2;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        spawnOn = true;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         randomSpawnPos = Random.Range(0, 2);
-        StartCoroutine(spawnEnemies());
+
+        if (spawnOn == true && wavenum < 3)
+        {
+            StartCoroutine(spawnEnemies());
+        }
     }
     IEnumerator spawnEnemies()
     {
+        spawnOn= false;
+        if (enemiesSpawned == maxEnemiesToSpawn)
+        {
+            waveChange = true;
+        }
+        if (waveChange == true)
+        {
+            yield return new WaitForSeconds(TimeWaves);
+            wavenum++;
+            maxEnemiesToSpawn += 2;
+            enemiesSpawned = 0;
+            waveChange = false;
+        }
+
+
         yield return new WaitForSeconds(timeBetweenSpawns);
         if (enemiesSpawned < maxEnemiesToSpawn)
         {
@@ -39,10 +62,8 @@ public class gameManager : MonoBehaviour
             {
                 Instantiate(enemy1, spawn1.position, spawn1.rotation);
                 enemiesSpawned += 1;
-                
-                
-            }
 
+            }
             if (randomSpawnPos == 1)
             {
                 Instantiate(enemy2, spawn2.position, spawn2.rotation);
@@ -50,6 +71,6 @@ public class gameManager : MonoBehaviour
               
             }
         }
-        yield return new WaitForSeconds(3);
+        spawnOn= true;
     }
 }

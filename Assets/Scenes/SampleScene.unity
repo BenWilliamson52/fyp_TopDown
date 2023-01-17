@@ -363,9 +363,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.000000007450581, y: 0, z: -10}
+  m_LocalScale: {x: 1.0000001, y: 0.99999994, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -839,15 +839,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab9d48538faba14bba452bb8d0f24e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wavenum: 0
+  TimeWaves: 1
+  spawnOn: 0
+  waveChange: 0
   enemy1: {fileID: 7995263897915911604, guid: 58252ac990c3d8e448ad774731722a27, type: 3}
   enemy2: {fileID: 7995263897915911604, guid: 4977c759502062a42a31932abc5b1b2d, type: 3}
   spawn1: {fileID: 56796766}
   spawn2: {fileID: 1950817734}
-  timeBetweenSpawns: 2
+  timeBetweenSpawns: 0.7
   enemiesSpawned: 0
-  maxEnemiesToSpawn: 6
+  maxEnemiesToSpawn: 3
   randomSpawnPos: 0
-  wave2: 6
 --- !u!4 &1478323394
 Transform:
   m_ObjectHideFlags: 0
