@@ -28,6 +28,18 @@ public class playerMovement : MonoBehaviour
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy1"))
+        {
+            Debug.Log("collided with enemy 1");
+            //Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
+            Destroy(collision.gameObject);
+        }
+
+    }
 }
 
 

@@ -39,12 +39,17 @@ public class gameManager : MonoBehaviour
             {
                 Instantiate(enemy1, spawn1.position, spawn1.rotation);
                 enemiesSpawned += 1;
+                
+                
             }
+
             if (randomSpawnPos == 1)
             {
                 Instantiate(enemy2, spawn2.position, spawn2.rotation);
                 enemiesSpawned += 1;
+              
             }
         }
+        yield return new WaitForSeconds(3);
     }
 }
