@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class playerMovement : MonoBehaviour
             //Destroy(this.gameObject);
             this.gameObject.SetActive(false);
             Destroy(collision.gameObject);
+            SceneManager.LoadScene("mainMenu");
         }
 
     }
