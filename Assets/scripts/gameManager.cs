@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
+    public static gameManager instance;
+
     public int wavenum = 0;
     public int TimeWaves;
     public bool spawnOn = false;
     public bool waveChange = false;
+
+    public Text scoreText;
+    int score = 0;
 
 
     public GameObject enemy1;
@@ -22,10 +28,22 @@ public class gameManager : MonoBehaviour
     public int maxEnemiesToSpawn;
     public float randomSpawnPos;
 
+    private void Awake()
+    {
+        instance= this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         spawnOn = true;
+        scoreText.text = score.ToString() + " Points";
+    }
+
+    public void Addpoint()
+    {
+        score += 1;
+        scoreText.text = score.ToString() + " Points";
     }
 
     // Update is called once per frame

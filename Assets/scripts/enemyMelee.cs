@@ -58,7 +58,8 @@ public class enemyMelee : MonoBehaviour
         if (collision.gameObject.CompareTag("bullet"))
         {
             Destroy(this.gameObject);
-            Destroy(collision.gameObject);        
+            Destroy(collision.gameObject);
+            gameManager.instance.Addpoint();
         }
     }
 }
