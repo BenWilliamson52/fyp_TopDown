@@ -15,7 +15,7 @@ public class gameManager : MonoBehaviour
     public Text scoreText;
     int score = 0;
 
-
+    public GameObject levelText;
     public GameObject enemy1;
     public GameObject enemy2;
 
@@ -55,6 +55,12 @@ public class gameManager : MonoBehaviour
         {
             StartCoroutine(spawnEnemies());
         }
+
+        if (score >= 16)
+        {
+            levelText.gameObject.SetActive(true);
+        }
+   
     }
     IEnumerator spawnEnemies()
     {
@@ -92,11 +98,6 @@ public class gameManager : MonoBehaviour
         spawnOn= true;
     }
 
-    public void nextLevel()
-    {
-
-
-    }
 
 
 }

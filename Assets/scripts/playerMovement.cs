@@ -37,22 +37,24 @@ public class playerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy1"))
         {
             Debug.Log("collided with enemy 1");
-            //Destroy(this.gameObject);
             this.gameObject.SetActive(false);
             Destroy(collision.gameObject);
-            //SceneManager.LoadScene("mainMenu");
             gameover.Setup(points);
         }
 
         if (collision.gameObject.CompareTag("Enemy2"))
         {
             Debug.Log("collided with enemy 2");
-            //Destroy(this.gameObject);
             this.gameObject.SetActive(false);
             Destroy(collision.gameObject);
-            //SceneManager.LoadScene("mainMenu");
             gameover.Setup(points);
         }
+
+        if (collision.gameObject.CompareTag("level"))
+        {
+            SceneManager.LoadScene("leveltwo");
+        }
+
 
     }
 }

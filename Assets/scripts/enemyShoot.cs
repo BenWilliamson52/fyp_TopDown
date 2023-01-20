@@ -7,8 +7,8 @@ public class enemyShoot : MonoBehaviour
 {
     public GameObject player;
     public Rigidbody2D rb;
-    public GameObject Manager;
-
+      public GameObject Manager;
+    
     //public playerMovement player;
 
     public float speed;
