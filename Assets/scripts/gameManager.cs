@@ -91,4 +91,12 @@ public class gameManager : MonoBehaviour
         }
         spawnOn= true;
     }
+
+    public void nextLevel()
+    {
+
+
+    }
+
+
 }

@@ -44,6 +44,16 @@ public class playerMovement : MonoBehaviour
             gameover.Setup(points);
         }
 
+        if (collision.gameObject.CompareTag("Enemy2"))
+        {
+            Debug.Log("collided with enemy 2");
+            //Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
+            Destroy(collision.gameObject);
+            //SceneManager.LoadScene("mainMenu");
+            gameover.Setup(points);
+        }
+
     }
 }
 

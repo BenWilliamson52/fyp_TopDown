@@ -7,12 +7,11 @@ public class enemyShoot : MonoBehaviour
 {
     public GameObject player;
     public Rigidbody2D rb;
-    
+    public GameObject Manager;
+
     //public playerMovement player;
 
     public float speed;
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +56,7 @@ public class enemyShoot : MonoBehaviour
         {
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
+            gameManager.instance.Addpoint();
 
         }
     }
