@@ -7,7 +7,7 @@ public class enemyMelee : MonoBehaviour
 {
     public GameObject player;
     public Rigidbody2D rb;
-    public GameObject Manager;
+    //public GameObject Manager;
     //public playerMovement player;
 
     public float speed;
@@ -54,6 +54,7 @@ public class enemyMelee : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("bullet"))
         {
+            this.gameObject.SetActive(false);
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
             gameManager.instance.Addpoint();

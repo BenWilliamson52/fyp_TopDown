@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class enemybullet : MonoBehaviour
 {
-
     public GameObject hitEffect;
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -13,5 +12,4 @@ public class bullet : MonoBehaviour
         Destroy(effect, 0.5f);
         Destroy(gameObject);
     }
-
 }
