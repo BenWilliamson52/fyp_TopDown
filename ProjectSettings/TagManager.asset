@@ -9,6 +9,7 @@ TagManager:
   - abc
   - Enemy2
   - level
+  - enemyBullet
   layers:
   - Default
   - TransparentFX
