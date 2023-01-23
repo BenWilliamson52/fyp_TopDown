@@ -18,11 +18,22 @@ public class gameManager : MonoBehaviour
     public GameObject levelText;
     public GameObject enemy1;
     public GameObject enemy2;
+    public GameObject door1;
+    public GameObject level2;
+    public GameObject fog1;
 
     public Transform spawn1;
     public Transform spawn2;
+    public Transform spawn3;
+    public Transform spawn4;
+
+    public SpriteRenderer spriteRenderer;
+
 
     public float timeBetweenSpawns;
+    public float fadeDelay = 5f;
+    public float alphaValue = 0;
+    public bool destroyGameObject = false;
    
     public int enemiesSpawned;
     public int maxEnemiesToSpawn;
@@ -40,6 +51,9 @@ public class gameManager : MonoBehaviour
     {
         spawnOn = true;
         scoreText.text = score.ToString() + " Points";
+        spriteRenderer= gameObject.GetComponent<SpriteRenderer>();
+       
+
     }
 
     public void Addpoint()
@@ -51,19 +65,38 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        randomSpawnPos = Random.Range(0, 2);
+        randomSpawnPos = Random.Range(0, 5);
 
         if (spawnOn == true && wavenum < 3)
         {
             StartCoroutine(spawnEnemies());
         }
 
-        if (score >= 16)
+        if (score >= 1) // this is LEVEL 1
         {
-            levelText.gameObject.SetActive(true);
+            //levelText.gameObject.SetActive(true); // this is for the switching scenes method i probably wont use
+            door1.gameObject.SetActive(false);
+            level2.gameObject.SetActive(true);
+            StartCoroutine(FadeTo(alphaValue, fadeDelay));
         }
    
     }
+
+    IEnumerator FadeTo(float aValue, float fadeTime)
+    {
+        float alpha = spriteRenderer.color.a;
+
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / fadeTime)
+        {
+            Color newColor = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, Mathf.Lerp(alpha, aValue, t));
+            spriteRenderer.color = newColor;
+            yield return null;
+
+            if(destroyGameObject)
+                Destroy(gameObject);
+        }
+    }
+
     IEnumerator spawnEnemies()
     {
         spawnOn= false;
@@ -95,6 +128,18 @@ public class gameManager : MonoBehaviour
                 Instantiate(enemy2, spawn2.position, spawn2.rotation);
                 enemiesSpawned += 1;
               
+            }
+            if (randomSpawnPos == 3)
+            {
+                Instantiate(enemy2, spawn3.position, spawn3.rotation);
+                enemiesSpawned += 1;
+
+            }
+            if (randomSpawnPos == 4)
+            {
+                Instantiate(enemy1, spawn4.position, spawn4.rotation);
+                enemiesSpawned += 1;
+
             }
         }
         spawnOn= true;

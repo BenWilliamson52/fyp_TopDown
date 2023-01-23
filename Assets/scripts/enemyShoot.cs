@@ -19,7 +19,7 @@ public class enemyShoot : MonoBehaviour
     //public playerMovement player;
 
     public float speed;
-    Vector2 movedirection;
+    Vector2 dir;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +31,7 @@ public class enemyShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         EnemyMoveShoot();
 
         timer += Time.deltaTime;
