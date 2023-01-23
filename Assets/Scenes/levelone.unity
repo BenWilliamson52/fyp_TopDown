@@ -1131,7 +1131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000000014826, y: 0.18, z: -10}
+  m_LocalPosition: {x: 0.000000014826, y: 2.5, z: -10}
   m_LocalScale: {x: 1.9900002, y: 1.9899999, z: 1.99}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2787,11 +2787,16 @@ MonoBehaviour:
   enemy2: {fileID: 7995263897915911604, guid: 4977c759502062a42a31932abc5b1b2d, type: 3}
   door1: {fileID: 1607933366}
   level2: {fileID: 1250805727}
+  fog1: {fileID: 256019310}
   spawn1: {fileID: 56796766}
   spawn2: {fileID: 1950817734}
   spawn3: {fileID: 1623864603}
   spawn4: {fileID: 566896430}
+  spriteRenderer: {fileID: 256019312}
   timeBetweenSpawns: 0.5
+  fadeDelay: 5
+  alphaValue: 0
+  destroyGameObject: 1
   enemiesSpawned: 0
   maxEnemiesToSpawn: 3
   randomSpawnPos: 0
