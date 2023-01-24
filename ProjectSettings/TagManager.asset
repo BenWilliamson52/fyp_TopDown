@@ -10,7 +10,6 @@ TagManager:
   - Enemy2
   - level
   - enemyBullet
-  - level2
   layers:
   - Default
   - TransparentFX

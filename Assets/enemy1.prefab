@@ -160,6 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   rb: {fileID: -2536549177914238378}
+  Manager: {fileID: 0}
   speed: 1.5
 --- !u!50 &-2536549177914238378
 Rigidbody2D:
@@ -191,7 +192,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7995263897915911604}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: a368f0ee7e15f4a4f8baacb4f5ffb93c, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0

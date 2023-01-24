@@ -49,6 +49,13 @@ public class playerMovement : MonoBehaviour
             Destroy(collision.gameObject);
             gameover.Setup(points);
         }
+
+        if (collision.gameObject.CompareTag("level"))
+        {
+            SceneManager.LoadScene("leveltwo");
+        }
+
+
     }
 }
 
