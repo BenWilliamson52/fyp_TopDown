@@ -27,9 +27,6 @@ public class gameManager : MonoBehaviour
     public Transform spawn3;
     public Transform spawn4;
 
-    public SpriteRenderer spriteRenderer;
-
-
     public float timeBetweenSpawns;
     public float fadeDelay = 5f;
     public float alphaValue = 0;
@@ -51,8 +48,6 @@ public class gameManager : MonoBehaviour
     {
         spawnOn = true;
         scoreText.text = score.ToString() + " Points";
-        spriteRenderer= gameObject.GetComponent<SpriteRenderer>();
-       
 
     }
 
@@ -77,24 +72,8 @@ public class gameManager : MonoBehaviour
             //levelText.gameObject.SetActive(true); // this is for the switching scenes method i probably wont use
             door1.gameObject.SetActive(false);
             level2.gameObject.SetActive(true);
-            StartCoroutine(FadeTo(alphaValue, fadeDelay));
         }
    
-    }
-
-    IEnumerator FadeTo(float aValue, float fadeTime)
-    {
-        float alpha = spriteRenderer.color.a;
-
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / fadeTime)
-        {
-            Color newColor = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, Mathf.Lerp(alpha, aValue, t));
-            spriteRenderer.color = newColor;
-            yield return null;
-
-            if(destroyGameObject)
-                Destroy(gameObject);
-        }
     }
 
     IEnumerator spawnEnemies()
