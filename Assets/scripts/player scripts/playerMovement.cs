@@ -50,10 +50,10 @@ public class playerMovement : MonoBehaviour
             gameover.Setup(points);
         }
 
-        if (collision.gameObject.CompareTag("level"))
-        {
-            SceneManager.LoadScene("leveltwo");
-        }
+       // if (collision.gameObject.CompareTag("level"))
+        //{
+        //    SceneManager.LoadScene("leveltwo");
+       //    }
 
 
     }
