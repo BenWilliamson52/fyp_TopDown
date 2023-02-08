@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class enemyMelee : MonoBehaviour
 {
+    public GameObject lookingPlayer;
+    public float lookingSpeed;
+    public float rotationModifier;
+
     public GameObject player;
     public Rigidbody2D rb;
     //public GameObject Manager;
@@ -18,13 +22,22 @@ public class enemyMelee : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         
         player = GameObject.FindGameObjectWithTag("Player");
+        lookingPlayer = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         EnemyMoveMelee();
- 
+
+        if (lookingPlayer != null)
+        {
+            Vector3 vectorToTarget = lookingPlayer.transform.position - transform.position;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * lookingSpeed);
+        }
+
     }
 
     public void EnemyMoveMelee()
