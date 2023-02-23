@@ -51,9 +51,12 @@ TagManager:
   - name: Background
     uniqueID: 1372217919
     locked: 0
-  - name: walls
-    uniqueID: 2589162337
+  - name: shadows
+    uniqueID: 2241700007
     locked: 0
   - name: Player+enemy
     uniqueID: 425925243
+    locked: 0
+  - name: walls
+    uniqueID: 2589162337
     locked: 0
