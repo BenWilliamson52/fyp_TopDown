@@ -11,6 +11,7 @@ TagManager:
   - level
   - enemyBullet
   - background
+  - scoring
   layers:
   - Default
   - TransparentFX
@@ -59,4 +60,7 @@ TagManager:
     locked: 0
   - name: walls
     uniqueID: 2589162337
+    locked: 0
+  - name: score
+    uniqueID: 2144423633
     locked: 0
