@@ -8254,6 +8254,10 @@ MonoBehaviour:
   spawnOn2: 0
   waveChange: 0
   triggerLink: 0
+  spriteRenderer: {fileID: 473862630}
+  spriteRenderer2: {fileID: 1198384214}
+  spriteRenderer3: {fileID: 917851035}
+  fadeDuration: 1
   scoreText: {fileID: 967342514}
   levelText: {fileID: 0}
   enemy1: {fileID: 7397844932868225159, guid: d1302c70891ebcf43b8796d7e9598dd7, type: 3}

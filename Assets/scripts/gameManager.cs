@@ -20,6 +20,14 @@ public class gameManager : MonoBehaviour
     public bool waveChange = false;
     public bool triggerLink = false;
 
+    //for fade out
+    public SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer2;
+    public SpriteRenderer spriteRenderer3;
+
+    public float fadeDuration = 1.0f; // how long the fade lasts
+    private bool isFadingOut = false; // fading out is in progress
+
     public Text scoreText;
     int score = 0;
 
@@ -83,7 +91,12 @@ public class gameManager : MonoBehaviour
 
         if (score >= 1) // this is LEVEL 1
         {
-            door1.gameObject.SetActive(false);
+            //door1.gameObject.SetActive(false); // door opens next area
+            if (!isFadingOut)
+            {
+                StartCoroutine(fade());
+            }
+
             level2.gameObject.SetActive(true);
         }
 
@@ -92,6 +105,47 @@ public class gameManager : MonoBehaviour
             StartCoroutine(spawnEnemiesArea2());
         }
    
+    }
+        
+    IEnumerator fade()
+    {
+        isFadingOut = true;
+
+        // get the initial color of the sprite
+
+        Color initialColor = spriteRenderer.color;
+
+        // calculate the rate at which the sprite should fade out per second
+        float fadePerSecond = 1.0f / fadeDuration;
+
+        // keep fading the sprite until it's completely transparent
+        while (spriteRenderer.color.a > 0.0f)
+        {
+            // calculate the new color of the sprite based on the fade rate and time elapsed
+            float fadeAmount = spriteRenderer.color.a - (fadePerSecond * Time.deltaTime);
+            Color newColor = new Color(initialColor.r, initialColor.g, initialColor.b, fadeAmount);
+            float fadeAmount2 = spriteRenderer2.color.a - (fadePerSecond * Time.deltaTime);
+            Color newColor2 = new Color(initialColor.r, initialColor.g, initialColor.b, fadeAmount);
+            float fadeAmount3 = spriteRenderer3.color.a - (fadePerSecond * Time.deltaTime);
+            Color newColor3 = new Color(initialColor.r, initialColor.g, initialColor.b, fadeAmount);
+
+
+
+            // update the sprite color
+            spriteRenderer.color = newColor;
+            spriteRenderer2.color = newColor;
+            spriteRenderer3.color = newColor;
+
+            // wait for the next frame to continue the loop
+            yield return null;
+        }
+
+        // set the sprite color to completely transparent
+        spriteRenderer.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0.0f);
+        spriteRenderer2.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0.0f);
+        spriteRenderer3.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0.0f);
+        isFadingOut = false;
+        door1.gameObject.SetActive(false); // door opens next area
     }
 
     IEnumerator spawnEnemiesArea2()
