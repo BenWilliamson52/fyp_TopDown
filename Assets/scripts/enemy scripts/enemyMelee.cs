@@ -25,6 +25,13 @@ public class enemyMelee : MonoBehaviour
         //lookingPlayer = GameObject.FindGameObjectWithTag("Player");
     }
 
+    void Update()
+    {
+        Vector2 direction = player.transform.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle + 90f, Vector3.forward);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -37,6 +44,8 @@ public class enemyMelee : MonoBehaviour
         //    Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         //    transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * lookingSpeed);
         //}
+
+
 
     }
 
