@@ -13,46 +13,59 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
+
+    [Header("Waves + Spawning")]
     public int wavenum = 0;
     public int TimeWaves;
     public bool spawnOn = false;
     public bool spawnOn2 = false;
-    public bool waveChange = false;
-    public bool triggerLink = false;
+    public bool waveChange = false; // next set of enemies
+    public bool triggerLink = false; // starts  spawning for area 2
 
     //for fade out
+
+    [Header("Fade Out Objects")]
     public SpriteRenderer spriteRenderer;
     public SpriteRenderer spriteRenderer2;
     public SpriteRenderer spriteRenderer3;
 
+    [Header("Fades Doors + settings")]
+    public float fadeDelay = 5f;
+    public float alphaValue = 0;
     public float fadeDuration = 1.0f; // how long the fade lasts
     private bool isFadingOut = false; // fading out is in progress
 
+
+   
+
+
+    [Header("HUD Text")]
+    public GameObject levelText;
     public Text scoreText;
     int score = 0;
 
-    public GameObject levelText;
+    [Header("Enemies")]
     public GameObject enemy1;
     public GameObject enemy2;
+
+    [Header("Level Items")]
     public GameObject door1;
     public GameObject level2;
     public GameObject fog1;
-
     public float timeBetweenSpawns;
-    public float fadeDelay = 5f;
-    public float alphaValue = 0;
+
+    [Header("Misc Spawns")]
     public bool destroyGameObject = false;
-   
     public int enemiesSpawned;
     public int maxEnemiesToSpawn;
     public float randomSpawnPos;
 
-    [Header("Area1")]
+    [Header("Area 1 Spawns")]
     public Transform spawn1;
     public Transform spawn2;
     public Transform spawn3;
     public Transform spawn4;
-    [Header("Area2")]
+    [Header("Area 2 Spawns")]
     public Transform spawn5;
     public Transform spawn6;
     public Transform spawn7;

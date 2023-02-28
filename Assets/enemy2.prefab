@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3750153195951534334}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.29499632, y: 0.19381998, z: -0.0012482422}
+  m_LocalPosition: {x: 0.29499632, y: 0.19381998, z: -0.001248242}
   m_LocalScale: {x: 0.13383375, y: 0.12900941, z: 0.1003753}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -200,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3917664999584105565}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.29304653, y: -0.26297414, z: -0.0012482422}
+  m_LocalPosition: {x: 0.293, y: -0.213, z: -0.001248242}
   m_LocalScale: {x: 0.13714275, y: 0.13219912, z: 0.102857046}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: -2536549177914238378}
   - component: {fileID: 1069688859}
   - component: {fileID: 5885610786076891695}
+  - component: {fileID: 6086907225142824352}
   m_Layer: 0
   m_Name: enemy2
   m_TagString: Enemy2
@@ -318,7 +319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7995263897915911604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6004, y: -1.3568, z: 0}
+  m_LocalPosition: {x: 3.6004, y: -1.703, z: 0}
   m_LocalScale: {x: 1.4758569, y: 1.5310467, z: 1.9678091}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -446,3 +447,23 @@ MonoBehaviour:
   rb: {fileID: -2536549177914238378}
   timer: 0
   speed: 1
+--- !u!95 &6086907225142824352
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995263897915911604}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c1f5214fdc26bb44bb200f014886ef2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
