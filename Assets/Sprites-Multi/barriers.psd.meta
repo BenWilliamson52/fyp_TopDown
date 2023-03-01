@@ -370,7 +370,7 @@ TextureImporter:
       barriers_0: -1824551433
       barriers_10: 1323787597
   spritePackingTag: 
-  pSDRemoveMatte: 0
+  pSDRemoveMatte: 1
   pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 

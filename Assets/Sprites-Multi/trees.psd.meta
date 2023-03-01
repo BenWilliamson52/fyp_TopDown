@@ -194,7 +194,7 @@ TextureImporter:
       trees_1: -1164376339
       trees_2: 1845184936
   spritePackingTag: 
-  pSDRemoveMatte: 0
+  pSDRemoveMatte: 1
   pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 
