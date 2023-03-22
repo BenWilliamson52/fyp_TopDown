@@ -238,7 +238,7 @@ TextureImporter:
       swampMonster_0: -818509322
       swampMonster_2: -215864764
   spritePackingTag: 
-  pSDRemoveMatte: 0
+  pSDRemoveMatte: 1
   pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 

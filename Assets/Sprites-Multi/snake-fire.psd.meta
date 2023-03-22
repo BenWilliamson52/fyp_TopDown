@@ -172,7 +172,7 @@ TextureImporter:
       snake-fire_0: -1342296913
       snake-fire_1: -410865188
   spritePackingTag: 
-  pSDRemoveMatte: 0
+  pSDRemoveMatte: 1
   pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 

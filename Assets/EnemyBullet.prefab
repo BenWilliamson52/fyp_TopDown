@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 412474477493232995}
   - component: {fileID: 5460198575124146057}
   - component: {fileID: 2892365104076967810}
+  - component: {fileID: -4887949364245137976}
   m_Layer: 0
   m_Name: EnemyBullet
-  m_TagString: enemyBullet
+  m_TagString: Enemy1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8315032216776414595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.677, y: -3.2217, z: 0}
-  m_LocalScale: {x: 0.19834605, y: 0.242868, z: 1}
+  m_LocalPosition: {x: -1.677, y: -3.158, z: 0}
+  m_LocalScale: {x: 0.12471405, y: 0.15270811, z: 0.62877}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,10 +76,10 @@ SpriteRenderer:
   m_SortingLayerID: 425925243
   m_SortingLayer: 3
   m_SortingOrder: 10
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.5943396, g: 0.10933607, b: 0.10933607, a: 1}
+  m_Sprite: {fileID: 1360470750, guid: 7fe2cc15be6a85f4f8bc97040efafdf0, type: 3}
+  m_Color: {r: 0.13866144, g: 0.6639859, b: 0.7169812, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
@@ -119,4 +120,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83ac85b7a96d644cae117c681487761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 1196721773222317468, guid: b4da53dfe098a42488032a845f83e973, type: 3}
+--- !u!61 &-4887949364245137976
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8315032216776414595}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.73636734}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.68, y: 5.58}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.68, y: 2.6633985}
+  m_EdgeRadius: 0
