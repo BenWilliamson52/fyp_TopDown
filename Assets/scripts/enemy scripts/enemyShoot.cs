@@ -54,6 +54,7 @@ public class enemyShoot : MonoBehaviour
          GameObject EnemyBullet = Instantiate(enemyBulletPrefab, enemyFirePoint.position, enemyFirePoint.rotation);
          Rigidbody2D rb = EnemyBullet.GetComponent<Rigidbody2D>();
          rb.AddForce(enemyFirePoint.up * enemyBulletForce, ForceMode2D.Impulse);
+         Destroy(EnemyBullet, 1f);
     }
 
 
