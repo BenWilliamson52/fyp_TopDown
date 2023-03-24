@@ -194,7 +194,7 @@ TextureImporter:
       barrelsNbox 1_1: 809416839
       barrelsNbox 1_2: 1506167470
   spritePackingTag: 
-  pSDRemoveMatte: 0
+  pSDRemoveMatte: 1
   pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 
