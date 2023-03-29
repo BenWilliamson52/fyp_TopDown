@@ -56,6 +56,7 @@ public class gameManager : MonoBehaviour
     public GameObject enemy1;
     public GameObject enemy2;
     public GameObject enemy3;
+    public GameObject enemy4;
 
     [Header("Level Items")]
     public GameObject door1;
@@ -64,6 +65,13 @@ public class gameManager : MonoBehaviour
     public GameObject level3;
     public GameObject level4;
     public float timeBetweenSpawns;
+
+    [Header("Door open Text")]
+    public GameObject Door1Open;
+    //public GameObject Door2Open;
+    //public GameObject Door3Open;
+    public int appearTime;
+    public int transitionTime = 1;
 
     [Header("Misc Spawns")]
     public bool destroyGameObject = false;
@@ -86,6 +94,11 @@ public class gameManager : MonoBehaviour
     public Transform spawn10;
     public Transform spawn11;
     public Transform spawn12;
+    //[Header("Area 4 Spawns")]
+    //public Transform spawn13;
+    //public Transform spawn14;
+    //public Transform spawn15;
+    //public Transform spawn16;
 
     private void Awake()
     {
@@ -93,12 +106,14 @@ public class gameManager : MonoBehaviour
     }
 
 
-
     // Start is called before the first frame update
     void Start()
     {
         spawnOn = true;
         scoreText.text = score.ToString() + " Points";
+        Door1Open.gameObject.SetActive(false);
+        transitionTime = 1;
+
 
     }
 
@@ -126,7 +141,18 @@ public class gameManager : MonoBehaviour
                 StartCoroutine(fade());
             }
 
+            if(transitionTime == 1)
+            StartCoroutine(transition1());
+
+        }
+
+        IEnumerator transition1()
+        {
             level2.gameObject.SetActive(true);
+            Door1Open.gameObject.SetActive(true);
+            yield return new WaitForSeconds(appearTime);
+            Door1Open.gameObject.SetActive(false);
+            transitionTime = transitionTime + 1;
         }
 
         if (score >= area2points) // this is LEVEL 2

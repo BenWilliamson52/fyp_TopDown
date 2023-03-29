@@ -278,7 +278,7 @@ TextureImporter:
       explosion_20: -577762620
       explosion_8: -670508074
   spritePackingTag: 
-  pSDRemoveMatte: 0
+  pSDRemoveMatte: 1
   pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 
