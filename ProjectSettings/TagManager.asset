@@ -12,6 +12,8 @@ TagManager:
   - enemyBullet
   - background
   - scoring
+  - Enemy3
+  - Enemy4
   layers:
   - Default
   - TransparentFX
