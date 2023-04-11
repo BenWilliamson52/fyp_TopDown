@@ -13,21 +13,34 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
-    [Header("Changing points needed")]
+    [Header("Changing points as needed")]
     public int area1points = 0;
     public int area2points = 0;
     public int area3points = 0;
+    public int area4points = 0;
+    public int area5points = 0;
+    public int area6points = 0;
+    public int area7points = 0;
 
 
-    [Header("Waves + Spawning")]
+    [Header("Waves + Spawning ( best to not touch )")]
     public int wavenum = 0;
     public int TimeWaves;
     public bool spawnOn = false;
     public bool spawnOn2 = false;
     public bool spawnOn3 = false;
+    public bool spawnOn4 = false;
+    public bool spawnOn5 = false;
+    public bool spawnOn6 = false;
+    public bool spawnOn7 = false;
+    //
     public bool waveChange = false; // next set of enemies
     public bool triggerLink = false; // starts  spawning for area 2
     public bool triggerLink3 = false; // starts  spawning for area 3
+    public bool triggerLink4 = false; // starts spawning for area 4
+    public bool triggerLink5 = false; // starts spawning for area 5
+    public bool triggerLink6 = false; // starts spawning for area 6
+    public bool triggerLink7 = false; // starts spawning for area 7
 
     //for fade out
 
@@ -35,13 +48,20 @@ public class gameManager : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public SpriteRenderer spriteRenderer2;
     public SpriteRenderer spriteRenderer3;
+    public SpriteRenderer spriteRenderer4;
+    public SpriteRenderer spriteRenderer5;
+    public SpriteRenderer spriteRenderer6;
 
     [Header("Fades Doors + settings")]
     public float fadeDelay = 5f;
     public float alphaValue = 0;
     public float fadeDuration = 1.0f; // how long the fade lasts
     private bool isFadingOut = false; // fading out is in progress
-    private bool isFadingOut2 = false; 
+    private bool isFadingOut2 = false;
+    private bool isFadingOut3 = false;
+    private bool isFadingOut4 = false;
+    private bool isFadingOut5 = false;
+    private bool isFadingOut6 = false;
 
 
    
@@ -53,17 +73,28 @@ public class gameManager : MonoBehaviour
     int score = 0;
 
     [Header("Enemies")]
-    public GameObject enemy1;
-    public GameObject enemy2;
-    public GameObject enemy3;
-    public GameObject enemy4;
+    public GameObject enemy1; // green swamp orc
+    public GameObject enemy2; // red snake 
+    public GameObject enemy3; // tauros
+    public GameObject enemy4; // skelly
 
     [Header("Level Items")]
+    [Header("doors")]
     public GameObject door1;
     public GameObject door2;
+    public GameObject door3;
+    public GameObject door4;
+    public GameObject door5;
+    public GameObject door6;
+    public GameObject door7;
+    public GameObject bridge;
+    [Header("Level triggers")]
     public GameObject level2;
     public GameObject level3;
     public GameObject level4;
+    public GameObject level5;
+    public GameObject level6;
+    public GameObject level7;
     public float timeBetweenSpawns;
 
     [Header("Door open Text")]
@@ -94,11 +125,21 @@ public class gameManager : MonoBehaviour
     public Transform spawn10;
     public Transform spawn11;
     public Transform spawn12;
-    //[Header("Area 4 Spawns")]
-    //public Transform spawn13;
-    //public Transform spawn14;
-    //public Transform spawn15;
-    //public Transform spawn16;
+    [Header("Area 4 Spawns")]
+    public Transform spawn13;
+    public Transform spawn14;
+    public Transform spawn15;
+    [Header("Area 5 Spawns")]
+    public Transform spawn16;
+    public Transform spawn17;
+    public Transform spawn18;
+    [Header("Area 6 Spawns")]
+    public Transform spawn19;
+    public Transform spawn20;
+    [Header("Area 7 Spawns")]
+    public Transform spawnBOSS;
+ 
+
 
     private void Awake()
     {
@@ -114,7 +155,6 @@ public class gameManager : MonoBehaviour
         Door1Open.gameObject.SetActive(false);
         transitionTime = 1;
 
-
     }
 
     public void Addpoint()
@@ -128,17 +168,16 @@ public class gameManager : MonoBehaviour
     {
         randomSpawnPos = Random.Range(0, 5);
 
-        if (spawnOn == true && wavenum < 3)
+        if (spawnOn == true && wavenum < 3) // starting spawns
         {
             StartCoroutine(spawnEnemies());
         }
 
         if (score >= area1points) // this is LEVEL 1
         {
-            //door1.gameObject.SetActive(false); // door opens next area
             if (!isFadingOut)
             {
-                StartCoroutine(fade());
+                StartCoroutine(fade()); // fades away door 1
             }
 
             if(transitionTime == 1)
@@ -148,16 +187,15 @@ public class gameManager : MonoBehaviour
 
         IEnumerator transition1()
         {
-            level2.gameObject.SetActive(true);
-            Door1Open.gameObject.SetActive(true);
-            yield return new WaitForSeconds(appearTime);
-            Door1Open.gameObject.SetActive(false);
-            transitionTime = transitionTime + 1;
+            level2.gameObject.SetActive(true); // sets up level 2
+            Door1Open.gameObject.SetActive(true); // gameobject that appears on screen
+            yield return new WaitForSeconds(appearTime); // waiting for (appearTime) seconds
+            Door1Open.gameObject.SetActive(false); // on screen popup leaves
+            transitionTime ++ ;
         }
 
         if (score >= area2points) // this is LEVEL 2
         {
-            //door1.gameObject.SetActive(false); // door opens next area
             if (!isFadingOut2)
             {
                 StartCoroutine(fade2());
@@ -168,19 +206,70 @@ public class gameManager : MonoBehaviour
 
         if (score >= area3points) // this is LEVEL 3
         {
-
-            level4.gameObject.SetActive(true); // sets up 3rd "level"
+            if (!isFadingOut3)
+            {
+                StartCoroutine(fade3());
+            }
+            level4.gameObject.SetActive(true); // sets up 4th "level"
         }
 
+        if (score >= area4points) // this is LEVEL 4
+        {
+            if (!isFadingOut4)
+            {
+                StartCoroutine(fade4());
+            }
+            level5.gameObject.SetActive(true); // sets up 5th "level"
+        }
+
+        if (score >= area5points) // this is LEVEL 5
+        {
+            if (!isFadingOut5)
+            {
+                StartCoroutine(fade5());
+            }
+            level6.gameObject.SetActive(true); // sets up 6th "level"
+        }
+
+        if (score >= area6points) // this is LEVEL 6
+        {
+            if (!isFadingOut6)
+            {
+                StartCoroutine(fade6());
+            }
+            level7.gameObject.SetActive(true); // sets up 7th "level"
+        }
+
+
+
+
+        ////////////////
         if (triggerLink == true && wavenum >= 3 && wavenum < 5 && spawnOn2 == true)
         {
             StartCoroutine(spawnEnemiesArea2());
         }
 
-        if (triggerLink3 == true && wavenum >= 1 && wavenum < 7 && spawnOn3 == true)
+        if (triggerLink3 == true && wavenum >= 5 && wavenum < 7 && spawnOn3 == true)
         {
             StartCoroutine(spawnEnemiesArea3());
         }
+
+        if (triggerLink4 == true && wavenum >= 7 && wavenum < 9 && spawnOn4 == true)
+        {
+            StartCoroutine(spawnEnemiesArea4());
+        }
+
+        if (triggerLink5 == true && wavenum >= 9 && wavenum < 11 && spawnOn5 == true)
+        {
+            StartCoroutine(spawnEnemiesArea5());
+        }
+
+        if (triggerLink6 == true && wavenum >= 11 && wavenum < 13 && spawnOn6 == true)
+        {
+            StartCoroutine(spawnEnemiesArea6());
+        }
+
+
 
     }
         
@@ -201,17 +290,9 @@ public class gameManager : MonoBehaviour
             // calculate the new color of the sprite based on the fade rate and time elapsed
             float fadeAmount = spriteRenderer.color.a - (fadePerSecond * Time.deltaTime);
             Color newColor = new Color(initialColor.r, initialColor.g, initialColor.b, fadeAmount);
-            float fadeAmount2 = spriteRenderer2.color.a - (fadePerSecond * Time.deltaTime);
-            Color newColor2 = new Color(initialColor.r, initialColor.g, initialColor.b, fadeAmount);
-            float fadeAmount3 = spriteRenderer3.color.a - (fadePerSecond * Time.deltaTime);
-            Color newColor3 = new Color(initialColor.r, initialColor.g, initialColor.b, fadeAmount);
-
-
 
             // update the sprite color
             spriteRenderer.color = newColor;
-            spriteRenderer2.color = newColor;
-            spriteRenderer3.color = newColor;
 
             // wait for the next frame to continue the loop
             yield return null;
@@ -219,8 +300,6 @@ public class gameManager : MonoBehaviour
 
         // set the sprite color to completely transparent
         spriteRenderer.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0.0f);
-        spriteRenderer2.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0.0f);
-        spriteRenderer3.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0.0f);
         isFadingOut = false;
         door1.gameObject.SetActive(false); // door opens next area
     }
@@ -231,27 +310,50 @@ public class gameManager : MonoBehaviour
 
         // get the initial color of the sprite
 
-        Color initialColor = spriteRenderer.color;
+        Color initialColor = spriteRenderer2.color;
 
         // calculate the rate at which the sprite should fade out per second
         float fadePerSecond = 1.0f / fadeDuration;
 
         // keep fading the sprite until it's completely transparent
-        while (spriteRenderer.color.a > 0.0f)
+        while (spriteRenderer2.color.a > 0.0f)
         {
             // calculate the new color of the sprite based on the fade rate and time elapsed
-            float fadeAmount = spriteRenderer.color.a - (fadePerSecond * Time.deltaTime);
+            float fadeAmount = spriteRenderer2.color.a - (fadePerSecond * Time.deltaTime);
             Color newColor = new Color(initialColor.r, initialColor.g, initialColor.b, fadeAmount);
-            float fadeAmount2 = spriteRenderer2.color.a - (fadePerSecond * Time.deltaTime);
-            Color newColor2 = new Color(initialColor.r, initialColor.g, initialColor.b, fadeAmount);
-            float fadeAmount3 = spriteRenderer3.color.a - (fadePerSecond * Time.deltaTime);
-            Color newColor3 = new Color(initialColor.r, initialColor.g, initialColor.b, fadeAmount);
-
-
 
             // update the sprite color
-            spriteRenderer.color = newColor;
             spriteRenderer2.color = newColor;
+
+            // wait for the next frame to continue the loop
+            yield return null;
+        }
+
+        // set the sprite color to completely transparent
+        spriteRenderer2.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0.0f);
+        isFadingOut2 = false;
+        door2.gameObject.SetActive(false); // door opens next area
+    }
+
+    IEnumerator fade3()
+    {
+        isFadingOut3 = true;
+
+        // get the initial color of the sprite
+
+        Color initialColor = spriteRenderer3.color;
+
+        // calculate the rate at which the sprite should fade out per second
+        float fadePerSecond = 1.0f / fadeDuration;
+
+        // keep fading the sprite until it's completely transparent
+        while (spriteRenderer3.color.a > 0.0f)
+        {
+            // calculate the new color of the sprite based on the fade rate and time elapsed
+            float fadeAmount = spriteRenderer3.color.a - (fadePerSecond * Time.deltaTime);
+            Color newColor = new Color(initialColor.r, initialColor.g, initialColor.b, fadeAmount);
+
+            // update the sprite color
             spriteRenderer3.color = newColor;
 
             // wait for the next frame to continue the loop
@@ -259,11 +361,253 @@ public class gameManager : MonoBehaviour
         }
 
         // set the sprite color to completely transparent
-        spriteRenderer.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0.0f);
-        spriteRenderer2.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0.0f);
         spriteRenderer3.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0.0f);
-        isFadingOut = false;
-        door2.gameObject.SetActive(false); // door opens next area
+
+        isFadingOut3 = false;
+        door3.gameObject.SetActive(false); // door opens next area
+        bridge.gameObject.SetActive(true); // bridge to next area (4)
+    }
+
+    IEnumerator fade4()
+    {
+        isFadingOut4 = true;
+
+        // get the initial color of the sprite
+
+        Color initialColor = spriteRenderer4.color;
+
+        // calculate the rate at which the sprite should fade out per second
+        float fadePerSecond = 1.0f / fadeDuration;
+
+        // keep fading the sprite until it's completely transparent
+        while (spriteRenderer4.color.a > 0.0f)
+        {
+            // calculate the new color of the sprite based on the fade rate and time elapsed
+            float fadeAmount = spriteRenderer4.color.a - (fadePerSecond * Time.deltaTime);
+            Color newColor = new Color(initialColor.r, initialColor.g, initialColor.b, fadeAmount);
+   
+            // update the sprite color
+            spriteRenderer4.color = newColor;
+
+            // wait for the next frame to continue the loop
+            yield return null;
+        }
+
+        // set the sprite color to completely transparent
+        spriteRenderer4.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0.0f);
+
+        isFadingOut4 = false;
+        door4.gameObject.SetActive(false); // door opens next area
+    }
+
+    IEnumerator fade5()
+    {
+        isFadingOut5 = true;
+
+        // get the initial color of the sprite
+
+        Color initialColor = spriteRenderer5.color;
+
+        // calculate the rate at which the sprite should fade out per second
+        float fadePerSecond = 1.0f / fadeDuration;
+
+        // keep fading the sprite until it's completely transparent
+        while (spriteRenderer5.color.a > 0.0f)
+        {
+            // calculate the new color of the sprite based on the fade rate and time elapsed
+            float fadeAmount = spriteRenderer5.color.a - (fadePerSecond * Time.deltaTime);
+            Color newColor = new Color(initialColor.r, initialColor.g, initialColor.b, fadeAmount);
+
+            // update the sprite color
+            spriteRenderer5.color = newColor;
+
+            // wait for the next frame to continue the loop
+            yield return null;
+        }
+
+        // set the sprite color to completely transparent
+        spriteRenderer5.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0.0f);
+
+        isFadingOut5 = false;
+        door5.gameObject.SetActive(false); // door opens next area
+    }
+
+    IEnumerator fade6()
+    {
+        isFadingOut6 = true;
+
+        // get the initial color of the sprite
+
+        Color initialColor = spriteRenderer6.color;
+
+        // calculate the rate at which the sprite should fade out per second
+        float fadePerSecond = 1.0f / fadeDuration;
+
+        // keep fading the sprite until it's completely transparent
+        while (spriteRenderer6.color.a > 0.0f)
+        {
+            // calculate the new color of the sprite based on the fade rate and time elapsed
+            float fadeAmount = spriteRenderer6.color.a - (fadePerSecond * Time.deltaTime);
+            Color newColor = new Color(initialColor.r, initialColor.g, initialColor.b, fadeAmount);
+  
+            // update the sprite color
+            spriteRenderer6.color = newColor;
+
+            // wait for the next frame to continue the loop
+            yield return null;
+        }
+
+        // set the sprite color to completely transparent
+        spriteRenderer6.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0.0f);
+        isFadingOut5 = false;
+        door6.gameObject.SetActive(false); // door opens next area
+    }
+
+    IEnumerator spawnEnemiesArea6()
+    {
+        spawnOn5 = false;
+        if (enemiesSpawned == maxEnemiesToSpawn)
+        {
+            waveChange = true;
+        }
+        if (waveChange == true)
+        {
+            yield return new WaitForSeconds(TimeWaves);
+            wavenum++;
+            maxEnemiesToSpawn += 1;
+            enemiesSpawned = 0;
+            waveChange = false;
+        }
+
+
+        yield return new WaitForSeconds(timeBetweenSpawns);
+        if (enemiesSpawned < maxEnemiesToSpawn)
+        {
+            if (randomSpawnPos == 0)
+            {
+                Instantiate(enemy1, spawn13.position, spawn13.rotation);
+                enemiesSpawned += 1;
+
+            }
+            if (randomSpawnPos == 1)
+            {
+                Instantiate(enemy1, spawn14.position, spawn14.rotation);
+                enemiesSpawned += 1;
+
+            }
+            if (randomSpawnPos == 3)
+            {
+                Instantiate(enemy1, spawn15.position, spawn15.rotation);
+                enemiesSpawned += 1;
+
+            }
+            if (randomSpawnPos == 4)
+            {
+                Instantiate(enemy4, spawn15.position, spawn15.rotation);
+                enemiesSpawned += 1;
+
+            }
+        }
+        spawnOn6 = true;
+
+    }
+
+    IEnumerator spawnEnemiesArea5()
+    {
+        spawnOn5 = false;
+        if (enemiesSpawned == maxEnemiesToSpawn)
+        {
+            waveChange = true;
+        }
+        if (waveChange == true)
+        {
+            yield return new WaitForSeconds(TimeWaves);
+            wavenum++;
+            maxEnemiesToSpawn += 1;
+            enemiesSpawned = 0;
+            waveChange = false;
+        }
+
+
+        yield return new WaitForSeconds(timeBetweenSpawns);
+        if (enemiesSpawned < maxEnemiesToSpawn)
+        {
+            if (randomSpawnPos == 0)
+            {
+                Instantiate(enemy4, spawn13.position, spawn13.rotation);
+                enemiesSpawned += 1;
+
+            }
+            if (randomSpawnPos == 1)
+            {
+                Instantiate(enemy4, spawn14.position, spawn14.rotation);
+                enemiesSpawned += 1;
+
+            }
+            if (randomSpawnPos == 3)
+            {
+                Instantiate(enemy1, spawn15.position, spawn15.rotation);
+                enemiesSpawned += 1;
+
+            }
+            if (randomSpawnPos == 4)
+            {
+                Instantiate(enemy4, spawn15.position, spawn15.rotation);
+                enemiesSpawned += 1;
+
+            }
+        }
+        spawnOn5 = true;
+
+    }
+
+    IEnumerator spawnEnemiesArea4()
+    {
+        spawnOn4 = false;
+        if (enemiesSpawned == maxEnemiesToSpawn)
+        {
+            waveChange = true;
+        }
+        if (waveChange == true)
+        {
+            yield return new WaitForSeconds(TimeWaves);
+            wavenum++;
+            maxEnemiesToSpawn += 1;
+            enemiesSpawned = 0;
+            waveChange = false;
+        }
+
+
+        yield return new WaitForSeconds(timeBetweenSpawns);
+        if (enemiesSpawned < maxEnemiesToSpawn)
+        {
+            if (randomSpawnPos == 0)
+            {
+                Instantiate(enemy4, spawn13.position, spawn13.rotation);
+                enemiesSpawned += 1;
+
+            }
+            if (randomSpawnPos == 1)
+            {
+                Instantiate(enemy4, spawn14.position, spawn14.rotation);
+                enemiesSpawned += 1;
+
+            }
+            if (randomSpawnPos == 3 )
+            {
+                Instantiate(enemy1, spawn15.position, spawn15.rotation);
+                enemiesSpawned += 1;
+
+            }
+            if (randomSpawnPos == 4)
+            {
+                Instantiate(enemy4, spawn15.position, spawn15.rotation);
+                enemiesSpawned += 1;
+
+            }
+        }
+        spawnOn4 = true;
+
     }
 
     IEnumerator spawnEnemiesArea3()
@@ -277,7 +621,7 @@ public class gameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(TimeWaves);
             wavenum++;
-            maxEnemiesToSpawn += 4;
+            maxEnemiesToSpawn += 1;
             enemiesSpawned = 0;
             waveChange = false;
         }
@@ -325,7 +669,7 @@ public class gameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(TimeWaves);
             wavenum++;
-            maxEnemiesToSpawn += 2;
+            maxEnemiesToSpawn += 1;
             enemiesSpawned = 0;
             waveChange = false;
         }
@@ -374,7 +718,7 @@ public class gameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(TimeWaves);
             wavenum++;
-            maxEnemiesToSpawn += 2;
+            maxEnemiesToSpawn += 1;
             enemiesSpawned = 0;
             waveChange = false;
         }
