@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\scripts\player scripts\smoothCamera.cs" />
-    <Compile Include="Assets\scripts\level3trigger.cs" />
+    <Compile Include="Assets\scripts\triggers\level3trigger.cs" />
     <Compile Include="Assets\scripts\enemy scripts\enemyMelee.cs" />
     <Compile Include="Assets\scripts\gameManager.cs" />
     <Compile Include="Assets\scripts\next_level.cs" />
@@ -69,7 +69,12 @@
     <Compile Include="Assets\scripts\play.cs" />
     <Compile Include="Assets\scripts\player scripts\playerMovement.cs" />
     <Compile Include="Assets\scripts\enemy scripts\enemyShoot.cs" />
-    <Compile Include="Assets\scripts\level2trigger.cs" />
+    <Compile Include="Assets\scripts\triggers\level2trigger.cs" />
+    <Compile Include="Assets\scripts\boss.cs" />
+    <Compile Include="Assets\scripts\triggers\level4trigger.cs" />
+    <Compile Include="Assets\scripts\triggers\level5trigger.cs" />
+    <Compile Include="Assets\scripts\triggers\level6trigger.cs" />
+    <Compile Include="Assets\scripts\triggers\level7trigger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

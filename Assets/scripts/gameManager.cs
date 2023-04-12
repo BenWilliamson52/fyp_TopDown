@@ -88,6 +88,7 @@ public class gameManager : MonoBehaviour
     public GameObject door6;
     public GameObject door7;
     public GameObject bridge;
+    public GameObject bossBlocker;
     [Header("Level triggers")]
     public GameObject level2;
     public GameObject level3;
@@ -95,6 +96,7 @@ public class gameManager : MonoBehaviour
     public GameObject level5;
     public GameObject level6;
     public GameObject level7;
+   
     public float timeBetweenSpawns;
 
     [Header("Door open Text")]
@@ -137,8 +139,11 @@ public class gameManager : MonoBehaviour
     public Transform spawn19;
     public Transform spawn20;
     [Header("Area 7 Spawns")]
-    public Transform spawnBOSS;
- 
+    public Transform spawnBOSS; // not in use
+    public GameObject finalHealthBar;
+    [Header("endscreen")]
+    public GameObject killedTheBoss;
+
 
 
     private void Awake()
@@ -168,6 +173,8 @@ public class gameManager : MonoBehaviour
     {
         randomSpawnPos = Random.Range(0, 5);
 
+   
+
         if (spawnOn == true && wavenum < 3) // starting spawns
         {
             StartCoroutine(spawnEnemies());
@@ -180,18 +187,21 @@ public class gameManager : MonoBehaviour
                 StartCoroutine(fade()); // fades away door 1
             }
 
-            if(transitionTime == 1)
-            StartCoroutine(transition1());
-
+            level2.gameObject.SetActive(true); // sets up level 2
+            if (transitionTime == 1)
+            {
+                StartCoroutine(transition1());
+                transitionTime = transitionTime + 1; // stops the pop-up from spamming
+            }
+            
         }
 
         IEnumerator transition1()
         {
-            level2.gameObject.SetActive(true); // sets up level 2
             Door1Open.gameObject.SetActive(true); // gameobject that appears on screen
             yield return new WaitForSeconds(appearTime); // waiting for (appearTime) seconds
             Door1Open.gameObject.SetActive(false); // on screen popup leaves
-            transitionTime ++ ;
+            
         }
 
         if (score >= area2points) // this is LEVEL 2
@@ -202,6 +212,11 @@ public class gameManager : MonoBehaviour
             }
 
             level3.gameObject.SetActive(true); // sets up 3rd "level"
+            if (transitionTime == 2)
+            {
+                StartCoroutine(transition1());
+                transitionTime = transitionTime + 1; // stops the pop-up from spamming
+            }
         }
 
         if (score >= area3points) // this is LEVEL 3
@@ -211,6 +226,11 @@ public class gameManager : MonoBehaviour
                 StartCoroutine(fade3());
             }
             level4.gameObject.SetActive(true); // sets up 4th "level"
+            if (transitionTime == 3)
+            {
+                StartCoroutine(transition1());
+                transitionTime = transitionTime + 1; // stops the pop-up from spamming
+            }
         }
 
         if (score >= area4points) // this is LEVEL 4
@@ -220,6 +240,11 @@ public class gameManager : MonoBehaviour
                 StartCoroutine(fade4());
             }
             level5.gameObject.SetActive(true); // sets up 5th "level"
+            if (transitionTime == 4)
+            {
+                StartCoroutine(transition1());
+                transitionTime = transitionTime + 1; // stops the pop-up from spamming
+            }
         }
 
         if (score >= area5points) // this is LEVEL 5
@@ -229,6 +254,11 @@ public class gameManager : MonoBehaviour
                 StartCoroutine(fade5());
             }
             level6.gameObject.SetActive(true); // sets up 6th "level"
+            if (transitionTime == 5)
+            {
+                StartCoroutine(transition1());
+                transitionTime = transitionTime + 1; // stops the pop-up from spamming
+            }
         }
 
         if (score >= area6points) // this is LEVEL 6
@@ -238,38 +268,46 @@ public class gameManager : MonoBehaviour
                 StartCoroutine(fade6());
             }
             level7.gameObject.SetActive(true); // sets up 7th "level"
+            if (transitionTime == 6)
+            {
+                StartCoroutine(transition1());
+                transitionTime = transitionTime + 1; // stops the pop-up from spamming
+            }
         }
 
 
 
 
         ////////////////
-        if (triggerLink == true && wavenum >= 3 && wavenum < 5 && spawnOn2 == true)
+        if (triggerLink == true && wavenum >= 3 && wavenum < 6 && spawnOn2 == true)
         {
             StartCoroutine(spawnEnemiesArea2());
         }
 
-        if (triggerLink3 == true && wavenum >= 5 && wavenum < 7 && spawnOn3 == true)
+        if (triggerLink3 == true && wavenum >= 6 && wavenum < 9 && spawnOn3 == true)
         {
             StartCoroutine(spawnEnemiesArea3());
         }
 
-        if (triggerLink4 == true && wavenum >= 7 && wavenum < 9 && spawnOn4 == true)
+        if (triggerLink4 == true && wavenum >= 9 && wavenum < 12 && spawnOn4 == true)
         {
             StartCoroutine(spawnEnemiesArea4());
         }
 
-        if (triggerLink5 == true && wavenum >= 9 && wavenum < 11 && spawnOn5 == true)
+        if (triggerLink5 == true && wavenum >= 12 && wavenum < 15 && spawnOn5 == true)
         {
             StartCoroutine(spawnEnemiesArea5());
         }
 
-        if (triggerLink6 == true && wavenum >= 11 && wavenum < 13 && spawnOn6 == true)
+        if (triggerLink6 == true && wavenum >= 15 && wavenum < 18 && spawnOn6 == true)
         {
             StartCoroutine(spawnEnemiesArea6());
         }
 
-
+        if (triggerLink7 == true && spawnOn7 == true)
+        {
+            finalBoss();
+        }
 
     }
         
@@ -463,6 +501,13 @@ public class gameManager : MonoBehaviour
         door6.gameObject.SetActive(false); // door opens next area
     }
 
+    public void finalBoss()
+    {
+        door7.gameObject.SetActive(true);
+        bossBlocker.gameObject.SetActive(false);
+        finalHealthBar.gameObject.SetActive(true);
+    }
+
     IEnumerator spawnEnemiesArea6()
     {
         spawnOn5 = false;
@@ -474,7 +519,7 @@ public class gameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(TimeWaves);
             wavenum++;
-            maxEnemiesToSpawn += 1;
+            //maxEnemiesToSpawn += 1;
             enemiesSpawned = 0;
             waveChange = false;
         }
@@ -485,25 +530,25 @@ public class gameManager : MonoBehaviour
         {
             if (randomSpawnPos == 0)
             {
-                Instantiate(enemy1, spawn13.position, spawn13.rotation);
+                Instantiate(enemy1, spawn19.position, spawn13.rotation);
                 enemiesSpawned += 1;
 
             }
             if (randomSpawnPos == 1)
             {
-                Instantiate(enemy1, spawn14.position, spawn14.rotation);
+                Instantiate(enemy1, spawn19.position, spawn14.rotation);
                 enemiesSpawned += 1;
 
             }
             if (randomSpawnPos == 3)
             {
-                Instantiate(enemy1, spawn15.position, spawn15.rotation);
+                Instantiate(enemy3, spawn20.position, spawn15.rotation);
                 enemiesSpawned += 1;
 
             }
             if (randomSpawnPos == 4)
             {
-                Instantiate(enemy4, spawn15.position, spawn15.rotation);
+                Instantiate(enemy4, spawn20.position, spawn15.rotation);
                 enemiesSpawned += 1;
 
             }
@@ -523,7 +568,7 @@ public class gameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(TimeWaves);
             wavenum++;
-            maxEnemiesToSpawn += 1;
+            //maxEnemiesToSpawn += 1;
             enemiesSpawned = 0;
             waveChange = false;
         }
@@ -534,25 +579,25 @@ public class gameManager : MonoBehaviour
         {
             if (randomSpawnPos == 0)
             {
-                Instantiate(enemy4, spawn13.position, spawn13.rotation);
+                Instantiate(enemy4, spawn16.position, spawn13.rotation);
                 enemiesSpawned += 1;
 
             }
             if (randomSpawnPos == 1)
             {
-                Instantiate(enemy4, spawn14.position, spawn14.rotation);
+                Instantiate(enemy4, spawn16.position, spawn14.rotation);
                 enemiesSpawned += 1;
 
             }
             if (randomSpawnPos == 3)
             {
-                Instantiate(enemy1, spawn15.position, spawn15.rotation);
+                Instantiate(enemy1, spawn17.position, spawn15.rotation);
                 enemiesSpawned += 1;
 
             }
             if (randomSpawnPos == 4)
             {
-                Instantiate(enemy4, spawn15.position, spawn15.rotation);
+                Instantiate(enemy4, spawn18.position, spawn15.rotation);
                 enemiesSpawned += 1;
 
             }
@@ -572,7 +617,7 @@ public class gameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(TimeWaves);
             wavenum++;
-            maxEnemiesToSpawn += 1;
+            //maxEnemiesToSpawn += 1;
             enemiesSpawned = 0;
             waveChange = false;
         }
@@ -621,7 +666,7 @@ public class gameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(TimeWaves);
             wavenum++;
-            maxEnemiesToSpawn += 1;
+            //maxEnemiesToSpawn += 1;
             enemiesSpawned = 0;
             waveChange = false;
         }
@@ -669,7 +714,7 @@ public class gameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(TimeWaves);
             wavenum++;
-            maxEnemiesToSpawn += 1;
+            //maxEnemiesToSpawn += 1;
             enemiesSpawned = 0;
             waveChange = false;
         }
@@ -686,13 +731,13 @@ public class gameManager : MonoBehaviour
             }
             if (randomSpawnPos == 1)
             {
-                Instantiate(enemy2, spawn6.position, spawn6.rotation);
+                Instantiate(enemy1, spawn6.position, spawn6.rotation);
                 enemiesSpawned += 1;
 
             }
             if (randomSpawnPos == 3)
             {
-                Instantiate(enemy2, spawn7.position, spawn7.rotation);
+                Instantiate(enemy1, spawn7.position, spawn7.rotation);
                 enemiesSpawned += 1;
 
             }
@@ -718,7 +763,7 @@ public class gameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(TimeWaves);
             wavenum++;
-            maxEnemiesToSpawn += 1;
+            //maxEnemiesToSpawn += 1;
             enemiesSpawned = 0;
             waveChange = false;
         }
