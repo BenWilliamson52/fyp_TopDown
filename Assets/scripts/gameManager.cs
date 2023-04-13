@@ -304,9 +304,9 @@ public class gameManager : MonoBehaviour
             StartCoroutine(spawnEnemiesArea6());
         }
 
-        if (triggerLink7 == true && spawnOn7 == true)
+        if (triggerLink7 == true && wavenum >= 18)
         {
-            finalBoss();
+            StartCoroutine(finalBoss());
         }
 
     }
@@ -501,11 +501,13 @@ public class gameManager : MonoBehaviour
         door6.gameObject.SetActive(false); // door opens next area
     }
 
-    public void finalBoss()
+    IEnumerator finalBoss()
     {
         door7.gameObject.SetActive(true);
         bossBlocker.gameObject.SetActive(false);
         finalHealthBar.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1);
     }
 
     IEnumerator spawnEnemiesArea6()
