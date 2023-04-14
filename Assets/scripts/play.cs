@@ -16,4 +16,9 @@ public class play : MonoBehaviour
     {
         SceneManager.LoadScene("levelone");
     }
+
+    public void controls()
+    {
+        SceneManager.LoadScene("controls");
+    }
 }
