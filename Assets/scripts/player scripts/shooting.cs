@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ public class shooting : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
 
+    public Animator animator;
+    private Coroutine coroutine;
+
     public float bulletForce = 20f;
 
     // Update is called once per frame
@@ -15,8 +19,22 @@ public class shooting : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
+            animator.SetBool("playerisshooting", true);
+            coroutine = StartCoroutine(WaitForAnimation());
+
             Shoot();
-        }
+        }   
+
+    }
+    IEnumerator WaitForAnimation()
+    {
+        yield return new WaitForSeconds(0.2f);
+        animator.SetBool("playerisshooting", false);
     }
 
     void Shoot()
@@ -25,9 +43,9 @@ public class shooting : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
         Destroy(bullet, 0.5f);
-        //
-        
     }
+    //animator.SetBool("playerisshooting", true);
+
 }
 
 
