@@ -40,6 +40,7 @@ public class playerMovement : MonoBehaviour
             this.gameObject.SetActive(false);
             Destroy(collision.gameObject);
             gameover.Setup(points);
+            Time.timeScale = 0f;
         }
 
         if (collision.gameObject.CompareTag("Enemy2"))

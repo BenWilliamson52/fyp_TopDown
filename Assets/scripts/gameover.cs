@@ -18,6 +18,7 @@ public class gameover : MonoBehaviour
     public void RestartButton()
     {
         SceneManager.LoadScene("levelone");
+        Time.timeScale = 1.0f;
     }
 
     public void mainmenu()

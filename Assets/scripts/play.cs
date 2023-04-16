@@ -15,6 +15,7 @@ public class play : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("levelone");
+        Time.timeScale= 1.0f;
     }
 
     public void controls()

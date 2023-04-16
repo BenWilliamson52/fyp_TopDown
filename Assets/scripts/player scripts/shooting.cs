@@ -42,7 +42,7 @@ public class shooting : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
-        Destroy(bullet, 0.5f);
+        Destroy(bullet, 0.7f);
     }
     //animator.SetBool("playerisshooting", true);
 
