@@ -304,7 +304,7 @@ public class gameManager : MonoBehaviour
             StartCoroutine(spawnEnemiesArea6());
         }
 
-        if (triggerLink7 == true && wavenum >= 18)
+        if (triggerLink7 == true )
         {
             StartCoroutine(finalBoss());
         }
