@@ -1,4 +1,6 @@
-# Fourth Year project - Interactive Digital Art and Design
+#AVICE - UNITY GAME 
+#
+#Fourth Year project - Interactive Digital Art and Design
 # 
 # Top Down Shooter Game
 #
